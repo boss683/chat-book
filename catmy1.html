@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Pages with File Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .page-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .page-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .join-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .join-btn:hover {
+            background: #45a049;
+        }
+
+        .join-btn.joined {
+            background: #666;
+            cursor: default;
+        }
+
+        .page-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .files-section {
+            margin-top: 20px;
+        }
+
+        .files-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-icon {
+            font-size: 1.2rem;
+            color: #667eea;
+        }
+
+        .file-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .file-action {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .butt{
+            /* display: flex; */
+    
+        
+
+        }
+
+        .download-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .download-btn:hover {
+            background: #218838;
+        }
+
+        .request-btn {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .request-btn:hover {
+            background: #e0a800;
+        }
+
+        .request-btn.requested {
+            background: #6c757d;
+            color: white;
+            cursor: default;
+        }
+
+        .chat-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .chat-btn:hover {
+            background: #0056b3;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: #28a745;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+        
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Group Pages & File Access</h1>
+            <p>Join pages and request access to files</p>
+
+           
+        </header>
+
+        <div class="pages-grid">
+            <!-- Confidence Corner Page -->
+            <div class="page-card" id="confidence-corner">
+                <div class="page-header">
+                    <h2 class="page-title">Confidence Corner</h2>
+                    <button class="join-btn" onclick="joinPage('confidence-corner')">Join Page</button>
+                </div>
+                <p class="page-description">
+                    A supportive community for building confidence and sharing growth experiences. 
+                    Join our discussions and access helpful resources.
+                </p>
+                
+                <div class="files-section hidden" id="confidence-files">
+                    <h3 class="files-title">📁 Group Files</h3>
+                    
+                    <div class="file-item">
+                        <div class="file-info">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name">Welcome_Guide.pdf</span>
+                        </div>
+                        <button class="file-action download-btn" onclick="downloadFile('Welcome_Guide.pdf')">Download</button>
+                    </div>
+                    
+                    <div class="file-item">
+                        <div class="file-info">
+                            <span class="file-icon">🎵</span>
+                            <span class="file-name">Weekly_Inspiration.mp3</span>
+                        </div>
+                        <button class="file-action download-btn" onclick="downloadFile('Weekly_Inspiration.mp3')">Download</button>
+                    </div>
+                    
+                    <div class="file-item">
+                        <div class="file-info">
+                            <span class="file-icon">📦</span>
+                            <span class="file-name">Private_Resources.zip</span>
+                        </div>
+                        <button class="file-action request-btn" onclick="requestAccess('Private_Resources.zip', this)">Request Access</button>
+                    </div>
+                    
+                    <button class="chat-btn" onclick="joinChat('Confidence Corner')">Join Confidence Corner Chat</button>
+                </div>
+            </div>
+
+            <!-- Study Files Page -->
+            <div class="page-card" id="study-files">
+                <div class="page-header">
+                    <h2 class="page-title">Study Files</h2>
+                    <button class="join-btn" onclick="joinPage('study-files')">Join Page</button>
+                </div>
+                <p class="page-description">
+                    Collaborative space for students to share notes, resources, and study materials. 
+                    Perfect for group projects and exam preparation.
+                </p>
+                
+                <div class="files-section hidden" id="study-files-section">
+                    <h3 class="files-title">📁 Study Resources</h3>
+                    
+                    <div class="file-item">
+                        <div class="file-info">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name">Biology_Notes_Ch1.pdf</span>
+                        </div>
+                        <button class="file-action request-btn" onclick="requestAccess('Biology_Notes_Ch1.pdf', this)">Request Access</button>
+                    </div>
+                    
+                    <div class="file-item">
+                        <div class="file-info">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name">Chemistry_Lab_Report.docx</span>
+                        </div>
+                        <button class="file-action request-btn" onclick="requestAccess('Chemistry_Lab_Report.docx', this)">Request Access</button>
+                    </div>
+                    
+                    <div class="file-item">
+                        <div class="file-info">
+                            <span class="file-icon">📊</span>
+                            <span class="file-name">Study_Schedule.xlsx</span>
+                        </div>
+                        <button class="file-action download-btn" onclick="downloadFile('Study_Schedule.xlsx')">Download</button>
+                    </div>
+                    
+                    <button  href="./chat.html"class="chat-btn" onclick="joinChat('Study Files')">Join Study Session</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- <button class="butt">Home</button> -->
+
+    <div class="butt">
+<a href="chat.html" >Home</a>
+
+    </div>
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Store page membership and file access status
+        const userData = {
+            pages: {},
+            files: {}
+        };
+
+        function joinPage(pageId) {
+            const pageCard = document.getElementById(pageId);
+            const joinBtn = pageCard.querySelector('.join-btn');
+            const filesSection = pageCard.querySelector('.files-section');
+            
+            // Update button state
+            joinBtn.textContent = 'Joined';
+            joinBtn.classList.add('joined');
+            joinBtn.disabled = true;
+            
+            // Show files section
+            filesSection.classList.remove('hidden');
+            
+            // Store in user data
+            userData.pages[pageId] = true;
+            
+            showNotification(`Successfully joined ${pageCard.querySelector('.page-title').textContent}!`);
+        }
+
+        function requestAccess(fileName, button) {
+            // Update button state
+            button.textContent = 'Access Requested';
+            button.classList.add('requested');
+            button.disabled = true;
+            
+            // Store in user data
+            userData.files[fileName] = 'requested';
+            
+            showNotification(`Access requested for ${fileName}. Waiting for approval.`);
+            
+            // Simulate admin approval after 3 seconds
+            setTimeout(() => {
+                if (userData.files[fileName] === 'requested') {
+                    userData.files[fileName] = 'approved';
+                    button.textContent = 'Download';
+                    button.classList.remove('requested');
+                    button.classList.add('download-btn');
+                    button.disabled = false;
+                    
+                    // Change the click handler to download
+                    button.setAttribute('onclick', `downloadFile('${fileName}')`);
+                    
+                    showNotification(`Access approved for ${fileName}! You can now download it.`);
+                }
+            }, 3000);
+        }
+
+        function downloadFile(fileName) {
+            showNotification(`Downloading ${fileName}...`);
+            // In a real application, this would trigger the actual file download
+            console.log(`Downloading file: ${fileName}`);
+        }
+
+        function joinChat(pageName) {
+            showNotification(`Joining ${pageName} chat...`);
+            // In a real application, this would redirect to the chat interface
+            console.log(`Joining chat for: ${pageName}`);
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

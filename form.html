@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM number wone
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #6C63FF;
+            --primary-light: #8A84FF;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --dark: #2A2D3E;
+            --light: #F8F9FA;
+            --gray: #E9ECEF;
+            --text: #333;
+            --text-light: #6C757D;
+            --success: #28a745;
+            --error: #dc3545;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1c2b 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .tagline {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 30px;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+
+        .form-hint {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input {
+            margin-top: 3px;
+        }
+
+        .checkbox-label {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .checkbox-label a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .checkbox-label a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: var(--text-light);
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--gray);
+        }
+
+        .divider-text {
+            padding: 0 15px;
+            font-size: 0.9rem;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            background: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--gray);
+        }
+
+        .social-btn.google {
+            color: #DB4437;
+        }
+
+        .social-btn.facebook {
+            color: #4267B2;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--text);
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .progress-bar {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .progress-step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: var(--gray);
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--gray);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .progress-step.active .step-number {
+            background: var(--primary);
+            color: white;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .progress-step.completed .step-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .progress-step.completed::after {
+            background: var(--success);
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn-secondary {
+            background: var(--gray);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .community-select {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .community-option {
+            border: 2px solid var(--gray);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .community-option:hover {
+            border-color: var(--primary-light);
+        }
+
+        .community-option.selected {
+            border-color: var(--primary);
+            background: rgba(108, 99, 255, 0.05);
+        }
+
+        .community-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .community-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .community-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .success-text {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .has-error .form-control {
+            border-color: var(--error);
+        }
+
+        .has-error .error-message {
+            display: block;
+        }
+
+        @media (max-width: 576px) {
+            .card {
+                padding: 20px;
+            }
+            
+            .social-login {
+                grid-template-columns: 1fr;
+            }
+            
+            .community-select {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cloud-moon"></i>
+                </div>
+                <div class="logo-text">Dreams & <span>Goals</span></div>
+            </div>
+            <p class="tagline">Join our community and turn your dreams into reality</p>
+        </header>
+
+        <div class="card">
+            <div class="progress-bar">
+                <div class="progress-step active" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Account</div>
+                </div>
+                <div class="progress-step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Profile</div>
+                </div>
+                <div class="progress-step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Interests</div>
+                </div>
+            </div>
+
+            <form id="joinForm">
+                <!-- Step 1: Account Information -->
+                <div class="form-step active" id="formStep1">
+                    <div class="card-header">
+                        <h2 class="card-title">Create Your Account</h2>
+                        <p class="card-subtitle">Join our community of dreamers and achievers</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="Enter your full name">
+                        <div class="error-message">Please enter your full name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        <div class="error-message">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Create a password">
+                        <div class="error-message">Password must be at least 8 characters</div>
+                        <div class="form-hint">Use 8 or more characters with a mix of letters, numbers & symbols</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password">
+                        <div class="error-message">Passwords do not match</div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" disabled>Back</button>
+                        <button type="button" class="btn" id="nextToStep2">Continue</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Profile Information -->
+                <div class="form-step" id="formStep2">
+                    <div class="card-header">
+                        <h2 class="card-title">Tell Us About Yourself</h2>
+                        <p class="card-subtitle">Help us personalize your experience</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" class="form-control" placeholder="Choose a username">
+                        <div class="error-message">Username is required</div>
+                        <div class="form-hint">This will be your display name in the community</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <div style="display: flex; gap: 15px;">
+                            <label style="display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="gender" value="male"> Male
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="gender" value="female"> Female
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="gender" value="other"> Other
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthdate" class="form-label">Date of Birth</label>
+                        <input type="date" id="birthdate" class="form-control">
+                        <div class="error-message">Please enter your date of birth</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio" class="form-label">Short Bio</label>
+                        <textarea id="bio" class="form-control" rows="3" placeholder="Tell us about your dreams and goals..."></textarea>
+                        <div class="form-hint">This will be visible on your profile</div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="backToStep1">Back</button>
+                        <button type="button" class="btn" id="nextToStep3">Continue</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Community Interests -->
+                <div class="form-step" id="formStep3">
+                    <div class="card-header">
+                        <h2 class="card-title">Choose Your Interests</h2>
+                        <p class="card-subtitle">Select communities you'd like to join</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Select Communities</label>
+                        <div class="community-select">
+                            <div class="community-option" data-community="goals">
+                                <div class="community-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div class="community-name">Goal Setting</div>
+                                <div class="community-desc">Achieve your dreams with structured planning</div>
+                            </div>
+                            <div class="community-option" data-community="mindset">
+                                <div class="community-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="community-name">Mindset & Growth</div>
+                                <div class="community-desc">Develop a success-oriented mindset</div>
+                            </div>
+                            <div class="community-option" data-community="progress">
+                                <div class="community-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="community-name">Progress Tracking</div>
+                                <div class="community-desc">Monitor and celebrate your achievements</div>
+                            </div>
+                            <div class="community-option" data-community="accountability">
+                                <div class="community-icon">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <div class="community-name">Accountability</div>
+                                <div class="community-desc">Stay motivated with partner support</div>
+                            </div>
+                        </div>
+                        <div class="error-message">Please select at least one community</div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter">
+                        <label for="newsletter" class="checkbox-label">
+                            Send me occasional updates about new features, community events, and tips for achieving my goals.
+                        </label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms" class="checkbox-label">
+                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                        <div class="error-message">You must agree to the terms and conditions</div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="backToStep2">Back</button>
+                        <button type="submit" class="btn">Join Community</button>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div class="form-step" id="formStep4">
+                    <div class="success-message">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2 class="success-title">Welcome to Dreams & Goals!</h2>
+                        <p class="success-text">Your account has been created successfully. We're excited to have you in our community!</p>
+                        <button type="button" class="btn" id="goToDashboard">Go to Dashboard</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="login-link">
+                Already have an account? <a href="singin.html">Sign In</a>
+                <!-- <button  href="./chat.html"> sinin</button> -->
+                <a href="./chaty1.html"> Home </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form steps navigation
+            const step1 = document.getElementById('formStep1');
+            const step2 = document.getElementById('formStep2');
+            const step3 = document.getElementById('formStep3');
+            const step4 = document.getElementById('formStep4');
+            
+            const progressStep1 = document.getElementById('step1');
+            const progressStep2 = document.getElementById('step2');
+            const progressStep3 = document.getElementById('step3');
+            
+            // Navigation buttons
+            document.getElementById('nextToStep2').addEventListener('click', function() {
+                if (validateStep1()) {
+                    step1.classList.remove('active');
+                    step2.classList.add('active');
+                    progressStep1.classList.remove('active');
+                    progressStep1.classList.add('completed');
+                    progressStep2.classList.add('active');
+                }
+            });
+            
+            document.getElementById('backToStep1').addEventListener('click', function() {
+                step2.classList.remove('active');
+                step1.classList.add('active');
+                progressStep2.classList.remove('active');
+                progressStep1.classList.add('active');
+                progressStep1.classList.remove('completed');
+            });
+            
+            document.getElementById('nextToStep3').addEventListener('click', function() {
+                if (validateStep2()) {
+                    step2.classList.remove('active');
+                    step3.classList.add('active');
+                    progressStep2.classList.remove('active');
+                    progressStep2.classList.add('completed');
+                    progressStep3.classList.add('active');
+                }
+            });
+            
+            document.getElementById('backToStep2').addEventListener('click', function() {
+                step3.classList.remove('active');
+                step2.classList.add('active');
+                progressStep3.classList.remove('active');
+                progressStep2.classList.add('active');
+                progressStep2.classList.remove('completed');
+            });
+            
+            // Community selection
+            const communityOptions = document.querySelectorAll('.community-option');
+            communityOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
+            
+            // Form submission
+            document.getElementById('joinForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateStep3()) {
+                    // In a real application, you would submit the form data to a server here
+                    step3.classList.remove('active');
+                    step4.classList.add('active');
+                    progressStep3.classList.remove('active');
+                    progressStep3.classList.add('completed');
+                }
+            });
+            
+            // Go to dashboard
+            document.getElementById('goToDashboard').addEventListener('click', function() {
+                alert('In a real application, this would redirect to the user dashboard.');
+                // window.location.href = 'dashboard.html';
+            });
+            
+            // Validation functions
+            function validateStep1() {
+                let isValid = true;
+                
+                // Full Name validation
+                const fullName = document.getElementById('fullName');
+                if (!fullName.value.trim()) {
+                    fullName.parentElement.classList.add('has-error');
+                    isValid = false;
+                } else {
+                    fullName.parentElement.classList.remove('has-error');
+                }
+                
+                // Email validation
+                const email = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value)) {
+                    email.parentElement.classList.add('has-error');
+                    isValid = false;
+                } else {
+                    email.parentElement.classList.remove('has-error');
+                }
+                
+                // Password validation
+                const password = document.getElementById('password');
+                if (password.value.length < 8) {
+                    password.parentElement.classList.add('has-error');
+                    isValid = false;
+                } else {
+                    password.parentElement.classList.remove('has-error');
+                }
+                
+                // Confirm Password validation
+                const confirmPassword = document.getElementById('confirmPassword');
+                if (confirmPassword.value !== password.value) {
+                    confirmPassword.parentElement.classList.add('has-error');
+                    isValid = false;
+                } else {
+                    confirmPassword.parentElement.classList.remove('has-error');
+                }
+                
+                return isValid;
+            }
+            
+            function validateStep2() {
+                let isValid = true;
+                
+                // Username validation
+                const username = document.getElementById('username');
+                if (!username.value.trim()) {
+                    username.parentElement.classList.add('has-error');
+                    isValid = false;
+                } else {
+                    username.parentElement.classList.remove('has-error');
+                }
+                
+                // Date of Birth validation
+                const birthdate = document.getElementById('birthdate');
+                if (!birthdate.value) {
+                    birthdate.parentElement.classList.add('has-error');
+                    isValid = false;
+                } else {
+                    birthdate.parentElement.classList.remove('has-error');
+                }
+                
+                return isValid;
+            }
+            
+            function validateStep3() {
+                let isValid = true;
+                
+                // Community selection validation
+                const selectedCommunities = document.querySelectorAll('.community-option.selected');
+                if (selectedCommunities.length === 0) {
+                    document.querySelector('.community-select').parentElement.classList.add('has-error');
+                    isValid = false;
+                } else {
+                    document.querySelector('.community-select').parentElement.classList.remove('has-error');
+                }
+                
+                // Terms agreement validation
+                const terms = document.getElementById('terms');
+                if (!terms.checked) {
+                    terms.parentElement.parentElement.classList.add('has-error');
+                    isValid = false;
+                } else {
+                    terms.parentElement.parentElement.classList.remove('has-error');
+                }
+                
+                return isValid;
+            }
+        });
+    </script>
+</body>
+</html>
